@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "llm-agents"
+version = "0.1.0"
+description = ""
+authors = ["Selim Raboudi <selim.raboudi@gmail.com>"]
+readme = "README.md"
+packages = [
+	{ include = "llm_agents" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.32.3"
+python-dotenv = "^1.0.1"
+snowflake-connector-python = "^3.12.3"
+slack-sdk = "^3.33.3"
+fuzzywuzzy = "^0.18.0"
+python-levenshtein = "^0.26.1"
+aiohttp = "^3.10.10"
+pydantic = "^2.9.2"
+python-multipart = "^0.0.17"
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.5"
+fastapi = "^0.115.4"
+uvicorn = "^0.32.0"
+colorama = "^0.4.6"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
