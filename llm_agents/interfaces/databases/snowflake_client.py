@@ -1,24 +1,16 @@
-import logging
-import os
 import re
-from pathlib import Path
-
-from dotenv import load_dotenv
-from snowflake import connector
-
-snowflake_logger = logging.getLogger("snowflake.connector")
-snowflake_logger.setLevel(logging.WARNING)
 from typing import Any, Dict
 
-DOTENV_PATH = Path(".env")
+from snowflake import connector
 
-load_dotenv(DOTENV_PATH)
-ACCOUNT = os.getenv("SNOWFLAKE_ACCOUNT")
-USER = os.getenv("SNOWFLAKE_USER")
-PASSWORD = os.getenv("SNOWFLAKE_PASSWORD")
-ROLE = os.getenv("SNOWFLAKE_ROLE")
-WAREHOUSE = os.getenv("SNOWFLAKE_WAREHOUSE")
-DATABASE = os.getenv("SNOWFLAKE_DATABASE")
+from llm_agents.config import get_environment_variable
+
+ACCOUNT = get_environment_variable("SNOWFLAKE_ACCOUNT")
+USER = get_environment_variable("SNOWFLAKE_USER")
+PASSWORD = get_environment_variable("SNOWFLAKE_PASSWORD")
+ROLE = get_environment_variable("SNOWFLAKE_ROLE")
+WAREHOUSE = get_environment_variable("SNOWFLAKE_WAREHOUSE")
+DATABASE = get_environment_variable("SNOWFLAKE_DATABASE")
 
 for var_env in [ACCOUNT, USER, PASSWORD, ROLE, WAREHOUSE, DATABASE]:
     assert var_env is not None
@@ -31,7 +23,7 @@ class SnowflakeQueryError(Exception):
 
 
 class SnowflakeClient:
-    
+
     def __init__(
         self,
         user=USER,

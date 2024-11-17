@@ -1,20 +1,13 @@
 from enum import Enum
-from typing import Any, Dict, Iterator, Optional, Tuple
+from typing import Any, Dict, Optional
 
 import requests
-from llm_agents.config import get_environment_variable
-from llm_agents.interfaces.bots._base import (
-    PROGRESS_EMOJIS,
-    PROGRESS_NB_DOTS,
-    PROGRESS_TEXT_DEFAULT,
-    APIInput,
-    Bot,
-    MessageHeaderStyle,
-    UserInput,
-)
 from pydantic import BaseModel, Field, model_validator
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
+
+from llm_agents.config import get_environment_variable
+from llm_agents.interfaces.bots._base import APIInput, Bot, UserInput
 
 SLACK_FEEDBACK_SECTION: list[dict[str, Any]] = [
     {"type": "divider"},

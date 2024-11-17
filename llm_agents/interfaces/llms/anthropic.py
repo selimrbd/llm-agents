@@ -1,32 +1,21 @@
 import asyncio
 import json
-import os
-from pathlib import Path
 from typing import Any, Optional
 
 import aiohttp
-from dotenv import load_dotenv
+
+from llm_agents.config import get_environment_variable
 
 from ._base import LLMClient, LLMModel, Prompt
 
-PATH_DOTENV = Path(".env")
-load_dotenv(PATH_DOTENV)
-
-ANTHROPIC_API_KEY: str = os.getenv("ANTHROPIC_API_KEY")
-assert ANTHROPIC_API_KEY is not None
+ANTHROPIC_API_KEY: str = get_environment_variable("ANTHROPIC_API_KEY")
 
 URL_ANTHROPIC_MESSAGE = "https://api.anthropic.com/v1/messages"
 
 SYSTEM_PROMPT = ""
 
 
-################################################################
-
-
 class ClaudeSendMessageError(Exception): ...
-
-
-################################################################
 
 
 class ClaudeModel(LLMModel):
