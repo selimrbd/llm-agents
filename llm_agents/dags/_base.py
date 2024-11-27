@@ -75,6 +75,14 @@ class AgentIO:
         ]
         return "\n".join(out_list)
 
+    def to_json(self):
+        out = {
+            "user_input": self.user_input.asdict(),
+            "data": self.data,
+            "processing_time": self.processing_time,
+        }
+        return out
+
 
 class AgentBase(ABC):
 
